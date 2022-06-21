@@ -10,16 +10,7 @@ class HelloWorldService {
     }
 
     executeHelloWorldPathVariableService(name) {
-        let username = 'otkmob';
-        let password = '12345';
-        let basicAuthHeader = 'Basic ' + window.btoa(`${username}:${password}`)
-        return axios.get(`http://localhost:8080/hello-world/path-variable/${name}`,
-        {
-            headers: {
-                'Access-Control-Allow-Origin': '**',
-                authorization: basicAuthHeader
-            }
-        });
+        return axios.get(`http://localhost:8080/hello-world/path-variable/${name}`);
     }
 }
 

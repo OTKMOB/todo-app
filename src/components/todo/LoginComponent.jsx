@@ -22,15 +22,17 @@ class LoginComponent extends Component {
 	}
 
 	loginClicked() {
-		if(this.state.username==='otkmob' && this.state.password==='12345') {
+		AuthenticationService
+		.executeBasicAuthenticationService(this.state.username, this.state.password)
+		.then(() => {
 			AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password);
 			this.props.navigate(`/welcome/${this.state.username}`);
-		}
-		else {
+		})
+		.catch(() => {
 			this.setState({
 				hasLoginFailed: true,
 				showSuccessMessage: false});
-		}
+		})
 	}
 
 	render() {
