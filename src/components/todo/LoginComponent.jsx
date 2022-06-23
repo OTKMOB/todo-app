@@ -21,11 +21,25 @@ class LoginComponent extends Component {
 		});
 	}
 
+	// loginClicked() {
+	// 	AuthenticationService
+	// 	.executeBasicAuthenticationService(this.state.username, this.state.password)
+	// 	.then(() => {
+	// 		AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password);
+	// 		this.props.navigate(`/welcome/${this.state.username}`);
+	// 	})
+	// 	.catch(() => {
+	// 		this.setState({
+	// 			hasLoginFailed: true,
+	// 			showSuccessMessage: false});
+	// 	})
+	// }
+
 	loginClicked() {
 		AuthenticationService
-		.executeBasicAuthenticationService(this.state.username, this.state.password)
-		.then(() => {
-			AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password);
+		.executeJwtAuthenticationService(this.state.username, this.state.password)
+		.then((response) => {
+			AuthenticationService.registerSuccessfulLoginForJwt(this.state.username, response.data.token)
 			this.props.navigate(`/welcome/${this.state.username}`);
 		})
 		.catch(() => {
